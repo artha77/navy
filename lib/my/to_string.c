@@ -5,7 +5,7 @@
 ** Login   <artha@epitech.net>
 **
 ** Started on  Mon Jan 16 19:30:05 2017 dylan renard
-** Last update Fri Feb 17 15:39:00 2017 dylan renard
+** Last update Sun Feb 19 13:25:29 2017 dylan renard
 */
 
 #include <unistd.h>
@@ -20,7 +20,7 @@ char		*to_string(int nbr)
 
   str = NULL;
   tmp = my_strdup(" ");
-  while (nbr > 10)
+  while (nbr >= 10)
     {
       tmp[0] = (char)((nbr % 10) + '0');
       str = my_strcat(tmp , str);

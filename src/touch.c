@@ -5,7 +5,7 @@
 ** Login   <artha@epitech.net>
 **
 ** Started on  Sun Feb 19 09:38:23 2017 dylan renard
-** Last update Sun Feb 19 11:57:37 2017 dylan renard
+** Last update Sun Feb 19 12:13:39 2017 dylan renard
 */
 
 #include "my_signal.h"
@@ -61,12 +61,12 @@ void			touch_handle(int signo, siginfo_t *sa, void *context)
 {
   if (verif_pid(sa->si_pid, 0))
     {
-      if (signo == SIGUSR1)
+      if (signo == SIGUSR1 && is_victory(0, 0) == -1)
 	{
 	  my_puts("missed");
 	  stat_touch("set", 0);
 	}
-      else if (signo == SIGUSR2)
+      else if (signo == SIGUSR2 && is_victory(0, 0) == -1)
 	{
 	  stat_touch("set", 1);
 	  my_puts("hit");

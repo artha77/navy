@@ -5,7 +5,7 @@
 ** Login   <artha@epitech.net>
 **
 ** Started on  Sun Feb 19 09:16:31 2017 dylan renard
-** Last update Sun Feb 19 10:46:34 2017 dylan renard
+** Last update Sun Feb 19 13:59:03 2017 dylan renard
 */
 
 #include "my_signal.h"
@@ -33,14 +33,14 @@ int			player1_start(char **map)
     }
   if (victory)
     {
-      my_puts("\nI won");
+      my_putchar('\n');
+      display_info(enemy_map, map);
+      my_putstr("\nI won");
       return (0);
     }
-  else
-    {
-      my_puts("Enemy won");
-      return (1);
-    }
+  display_info(enemy_map, map);
+  my_putstr("\nEnemy won");
+  return (1);
 }
 
 int			player2_start(char **map)
@@ -53,21 +53,20 @@ int			player2_start(char **map)
   display_info(enemy_map, map);
   while (victory == -1)
     {
-      my_puts("\nwaiting for enemy's attack...");
       if ((victory = is_victory(0, 0)) == -1)
 	{
+	  my_puts("\nwaiting for enemy's attack...");
 	  victory = wait_player(enemy_map, map);
-	  send(enemy_map, map);
+	  if (victory == -1)
+	    send(enemy_map, map);
 	}
     }
   if (victory)
     {
-      my_puts("\nI won");
-      return (0);
+      my_putchar('\n');
+      display_info(enemy_map, map);
+      return (my_putstr("\nI won"), 0);
     }
-  else
-    {
-      my_puts("Enemy won");
-      return (1);
-    }
+  display_info(enemy_map, map);
+  return (my_putstr("\nEnemy won"), 1);
 }

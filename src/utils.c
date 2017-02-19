@@ -5,7 +5,7 @@
 ** Login   <artha@epitech.net>
 **
 ** Started on  Sun Feb 19 09:01:58 2017 dylan renard
-** Last update Sun Feb 19 10:20:59 2017 dylan renard
+** Last update Sun Feb 19 13:01:01 2017 dylan renard
 */
 
 #include "my_signal.h"
@@ -63,5 +63,6 @@ void			make_cross(char *pos, char **map)
 
 void			make_round(char *pos, char **map)
 {
-  map[pos[1] - '0' - 1][pos[0] - 'A'] = 'o';
+  if (map[pos[1] - '0' - 1][pos[0] - 'A'] != 'x')
+    map[pos[1] - '0' - 1][pos[0] - 'A'] = 'o';
 }

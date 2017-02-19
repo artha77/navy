@@ -5,7 +5,7 @@
 ** Login   <artha@epitech.net>
 **
 ** Started on  Sun Feb 19 09:33:10 2017 dylan renard
-** Last update Sun Feb 19 10:47:55 2017 dylan renard
+** Last update Sun Feb 19 13:57:23 2017 dylan renard
 */
 
 #include "my_signal.h"
@@ -62,7 +62,8 @@ int			send(char **enemy_map, char **map)
 	  touch = have_touch(enemy_map);
 	  if (touch == 1) make_cross(str, enemy_map);
 	  else make_round(str, enemy_map);
-	  is_victory(0, touch);
+	  if (is_victory(0, touch) != -1)
+	    return (0);
 	  usleep(1000);
 	  return (0);
 	}
@@ -76,13 +77,14 @@ int			miss_or_touch(char **map, char *pos)
   int			touch;
 
   touch = is_touch(map, pos);
-  if (touch == 1 && is_victory(0 , 0) == -1)
+  if (touch == 1)
     my_puts(my_strcat(pos, ": hit\n"));
-  else if (touch == 0 && is_victory(0 , 0) == -1)
+  else if (touch == 0)
     {
       make_round(pos, map);
       my_puts(my_strcat(pos, ": missed\n"));
     }
+  is_victory(touch, 0);
   return (touch);
 }
 
@@ -112,5 +114,5 @@ int			wait_player(char **enemy_map, char ** map)
   touch = miss_or_touch(map, pos);
   kill(verif_pid(0, 1), (touch == 0) ? SIGUSR1 : SIGUSR2);
   usleep(1000);
-  return (is_victory(touch, 0));
+  return (is_victory(0, 0));
 }
