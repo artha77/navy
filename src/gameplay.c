@@ -5,7 +5,7 @@
 ** Login   <artha@epitech.net>
 **
 ** Started on  Sun Feb 19 09:33:10 2017 dylan renard
-** Last update Sun Feb 19 10:05:46 2017 dylan renard
+** Last update Sun Feb 19 10:47:55 2017 dylan renard
 */
 
 #include "my_signal.h"
@@ -76,13 +76,14 @@ int			miss_or_touch(char **map, char *pos)
   int			touch;
 
   touch = is_touch(map, pos);
-  if (touch == 1)
+  if (touch == 1 && is_victory(0 , 0) == -1)
     my_puts(my_strcat(pos, ": hit\n"));
-  else if (touch == 0)
+  else if (touch == 0 && is_victory(0 , 0) == -1)
     {
       make_round(pos, map);
       my_puts(my_strcat(pos, ": missed\n"));
     }
+  return (touch);
 }
 
 int			wait_player(char **enemy_map, char ** map)

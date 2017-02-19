@@ -5,7 +5,7 @@
 ** Login   <artha@epitech.net>
 **
 ** Started on  Sun Feb 19 09:38:23 2017 dylan renard
-** Last update Sun Feb 19 09:42:18 2017 dylan renard
+** Last update Sun Feb 19 11:57:37 2017 dylan renard
 */
 
 #include "my_signal.h"
@@ -16,7 +16,10 @@
 
 void			istouch_handle(int signo, siginfo_t *sa, void *context)
 {
-  return ;
+  if (verif_pid(sa->si_pid, 0))
+    return ;
+  else
+    while (pause() != -1 && verif_pid(sa->si_pid, 0));
 }
 
 int			is_touch(char **map, char *pos)
@@ -27,8 +30,8 @@ int			is_touch(char **map, char *pos)
   sig.sa_flags = SA_SIGINFO;
   if (sigaction(SIGUSR1, &sig, NULL) == -1) return (84);
   if (sigaction(SIGUSR2, &sig, NULL) == -1) return (84);
-  if (map[pos[1] - '0'][pos[0] - 'A'] >= '0'
-      && map[pos[1] - '0'][pos[0] - 'A'] <= '9')
+  if (map[pos[1] - '0' - 1][pos[0] - 'A'] >= '0'
+      && map[pos[1] - '0' - 1][pos[0] - 'A'] <= '9')
     {
       kill(verif_pid(0, 1), SIGUSR2);
       while (pause() != -1);
@@ -56,16 +59,21 @@ int			stat_touch(char *mode, int touch)
 
 void			touch_handle(int signo, siginfo_t *sa, void *context)
 {
-  if (signo == SIGUSR1)
+  if (verif_pid(sa->si_pid, 0))
     {
-      my_puts("missed");
-      stat_touch("set", 0);
+      if (signo == SIGUSR1)
+	{
+	  my_puts("missed");
+	  stat_touch("set", 0);
+	}
+      else if (signo == SIGUSR2)
+	{
+	  stat_touch("set", 1);
+	  my_puts("hit");
+	}
     }
-  else if (signo == SIGUSR2)
-    {
-      stat_touch("set", 1);
-      my_puts("hit");
-    }
+  else
+    while (pause() != -1 && verif_pid(sa->si_pid, 0));
 }
 
 int			have_touch(char **enemy_map)
@@ -77,6 +85,7 @@ int			have_touch(char **enemy_map)
   if (sigaction(SIGUSR1, &sig, NULL) == -1) return (84);
   if (sigaction(SIGUSR2, &sig, NULL) == -1) return (84);
   kill(verif_pid(0, 1), SIGUSR1);
+  while (pause() != -1);
   usleep(1000);
   return (stat_touch("get", 0));
 }

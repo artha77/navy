@@ -5,7 +5,7 @@
 ** Login   <artha@epitech.net>
 **
 ** Started on  Sun Feb 19 09:01:58 2017 dylan renard
-** Last update Sun Feb 19 10:09:00 2017 dylan renard
+** Last update Sun Feb 19 10:20:59 2017 dylan renard
 */
 
 #include "my_signal.h"
@@ -58,10 +58,10 @@ int			is_num(char *str)
 
 void			make_cross(char *pos, char **map)
 {
-  map[pos[1] - '0'][pos[0] - 'A'] = 'x';
+  map[pos[1] - '0' - 1][pos[0] - 'A'] = 'x';
 }
 
 void			make_round(char *pos, char **map)
 {
-  map[pos[1] - '0'][pos[0] - 'A'] = 'o';
+  map[pos[1] - '0' - 1][pos[0] - 'A'] = 'o';
 }

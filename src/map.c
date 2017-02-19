@@ -5,7 +5,7 @@
 ** Login   <artha@epitech.net>
 **
 ** Started on  Sun Feb 19 08:51:07 2017 dylan renard
-** Last update Sun Feb 19 08:56:34 2017 dylan renard
+** Last update Sun Feb 19 10:18:02 2017 dylan renard
 */
 
 #include "my_signal.h"
@@ -75,7 +75,7 @@ void			display_map(char **map)
   my_putstr("-+---------------\n");
   while (i != 8)
     {
-      my_putchar(i + '0');
+      my_putchar(i + '0' + 1);
       my_putchar('|');
       while (j != 8)
 	{

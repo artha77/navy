@@ -5,7 +5,7 @@
 ** Login   <artha@epitech.net>
 **
 ** Started on  Sun Feb 19 09:16:31 2017 dylan renard
-** Last update Sun Feb 19 10:07:35 2017 dylan renard
+** Last update Sun Feb 19 10:46:34 2017 dylan renard
 */
 
 #include "my_signal.h"
@@ -33,7 +33,7 @@ int			player1_start(char **map)
     }
   if (victory)
     {
-      my_puts("I won");
+      my_puts("\nI won");
       return (0);
     }
   else
@@ -62,7 +62,7 @@ int			player2_start(char **map)
     }
   if (victory)
     {
-      my_puts("I won");
+      my_puts("\nI won");
       return (0);
     }
   else

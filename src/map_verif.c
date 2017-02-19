@@ -5,7 +5,7 @@
 ** Login   <artha@epitech.net>
 **
 ** Started on  Sun Feb 19 08:57:04 2017 dylan renard
-** Last update Sun Feb 19 09:01:47 2017 dylan renard
+** Last update Sun Feb 19 10:18:36 2017 dylan renard
 */
 
 #include "my_signal.h"
@@ -27,7 +27,7 @@ int			verif_arg2(char *pos)
   if (pos == NULL) return (-1);
   if (my_strlen(pos) != 2) return (-1);
   if (!(pos[0] >= 'A' && pos[0] <= 'H')) return (-1);
-  if (!(pos[1] >= '0' && pos[1] <= '8')) return (-1);
+  if (!(pos[1] >= '1' && pos[1] <= '8')) return (-1);
   return (0);
 }
 
