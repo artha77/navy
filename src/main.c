@@ -5,7 +5,7 @@
 ** Login   <artha@epitech.net>
 **
 ** Started on  Fri Feb 10 11:24:49 2017 dylan renard
-** Last update Sun Feb 19 13:25:34 2017 dylan renard
+** Last update Sun Feb 19 18:36:23 2017 dylan renard
 */
 
 #include "my_signal.h"
@@ -16,10 +16,10 @@
 
 void			display_info(char **enemy_map, char **map)
 {
-  my_puts("my positions :");
+  my_puts("my positions:");
   display_map(map);
   my_putchar('\n');
-  my_puts("enemy positions :");
+  my_puts("enemy's positions:");
   display_map(enemy_map);
 }
 

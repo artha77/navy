@@ -5,7 +5,7 @@
 ** Login   <artha@epitech.net>
 **
 ** Started on  Sun Feb 19 09:09:28 2017 dylan renard
-** Last update Sun Feb 19 10:07:52 2017 dylan renard
+** Last update Sun Feb 19 18:33:39 2017 dylan renard
 */
 
 #include "my_signal.h"
@@ -63,7 +63,7 @@ int			sig_start(int pid, char *map_name)
   usleep(1000);
   kill(pid, SIGUSR1);
   while (pause() != -1);
-  my_puts("successfully connected");
+  my_puts("successfully connected\n");
   if ((ret = player2_start(map)) == 84) return (84);
   return (ret);
 }
